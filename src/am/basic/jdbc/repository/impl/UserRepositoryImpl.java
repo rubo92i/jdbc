@@ -3,6 +3,7 @@ package am.basic.jdbc.repository.impl;
 import am.basic.jdbc.model.User;
 import am.basic.jdbc.repository.UserRepository;
 import am.basic.jdbc.util.DataSource;
+import lombok.extern.log4j.Log4j2;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +12,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Log4j2
 public class UserRepositoryImpl implements UserRepository {
 
 
@@ -30,10 +33,10 @@ public class UserRepositoryImpl implements UserRepository {
 
             int result = pstmt.executeUpdate();
 
-            System.out.println("query was executed " + result + " rows were affected");
+            log.error("query was executed {} rows were affected", result);
             pstmt.close();
         } catch (SQLException exception) {
-            System.out.println(exception.getMessage());
+            log.error("Add user failed with reason {}", exception.getMessage());
         }
     }
 
@@ -50,10 +53,10 @@ public class UserRepositoryImpl implements UserRepository {
             pstmt.setLong(5, user.getId());
             int result = pstmt.executeUpdate();
 
-            System.out.println("query was executed " + result + " rows were affected");
+            log.error("query was executed {} rows were affected", result);
             pstmt.close();
         } catch (SQLException exception) {
-            System.out.println(exception.getMessage());
+            log.error("Add user failed with reason {}", exception.getMessage());
         }
     }
 
