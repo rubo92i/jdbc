@@ -17,5 +17,7 @@ public class Main {
         user = userRepository.getByUsername("ruben.manukyan");
 
         System.out.println(user);
+
+        System.out.println("Hello world");
     }
 }
